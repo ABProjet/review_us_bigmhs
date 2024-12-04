@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="icon" href="review.png">
+	<title>Review Us</title>
+    <link rel="stylesheet" href="style.css">
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase.js"></script>
+    <script src="main.js"></script>
+</head>
+<body >
+
+	<div class="wrapper" >
+		<div id="review">
+			<h3>Review Our Project</h3>
+			<form action="#" onsubmit="return false">
+				<div class="rating">
+					<input id="getStartNum" type="number" name="rating" hidden>
+					<i id="star1" class='bx bx-star star' style="--i: 0;"></i>
+					<i id="star2" class='bx bx-star star' style="--i: 1;"></i>
+					<i id="star3" class='bx bx-star star' style="--i: 2;"></i>
+					<i id="star4" class='bx bx-star star' style="--i: 3;"></i>
+					<i id="star5" class='bx bx-star star' style="--i: 4;"></i>
+				</div>
+			<input id="name" placeholder="Your Name">
+				<textarea id="opinion" name="opinion" cols="30" rows="5" placeholder="Your opinion..."></textarea>
+				<div class="btn-group">
+					<button onclick="submitStar()"  class="btn submit">Submit</button>
+				</div>
+			</form>
+		</div>
+		
+		
+		<h1>Our Reviews</h1>
+
+	
+		<ul class="list__review" id="output">
+			
+
+			
+		</ul>
+	</div>
+
+	
+  <script type="module">
+    const allStar = document.querySelectorAll('.rating .star')
+const ratingValue = document.querySelector('.rating input')
+
+allStar.forEach((item, idx)=> {
+	item.addEventListener('click', function () {
+		let click = 0
+		ratingValue.value = idx + 1
+
+		allStar.forEach(i=> {
+			i.classList.replace('bxs-star', 'bx-star')
+			i.classList.remove('active')
+		})
+		for(let i=0; i<allStar.length; i++) {
+			if(i <= idx) {
+				allStar[i].classList.replace('bx-star', 'bxs-star')
+				allStar[i].classList.add('active')
+			} else {
+				allStar[i].style.setProperty('--i', click)
+				click++
+			}
+		}
+	})
+})
+  </script>
+</body>
+</html>
